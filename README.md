@@ -56,47 +56,48 @@ The system features **automated data ingestion from Google Drive** and a **dual 
 
 ## 🗂 Workflow Architecture
 
-🧱 Architecture Overview
+# 🏗️ Architecture: Core Components
 
-This project integrates multiple AI and automation layers to deliver a seamless customer experience on Facebook Messenger.
-Below is an overview of the core components that make the system work end-to-end.
+This section outlines the key building blocks of our AI-powered Facebook Messenger bot for **The First** laptop store. The system seamlessly integrates conversational AI, media processing, and data management to deliver a smooth, engaging sales experience in Egyptian colloquial Arabic.
 
-⚙️ Core Components
-📨 Webhook (Facebook Messenger Integration)
+## 📨 Webhook (Facebook Messenger Integration)
+Handles all incoming interactions from users:
+- **Receives incoming messages** from Facebook
+- **Validates webhook subscriptions** for secure setup
+- **Routes messages** to appropriate processors based on content type
 
-Receives incoming messages from Facebook
+## 🎨 Media Processing Layer
+Smartly processes multimedia attachments to extract actionable insights:
+- **Switch Node**: Routes attachments by type (voice, image, etc.)
+- **Transcribe Recording**: Converts voice messages to text using **OpenAI Whisper**
+- **Analyze Image**: Extracts laptop details from product images via **OpenAI Vision**
+- **HTTP Request**: Fetches attachment payloads for deeper analysis
 
-Validates webhook subscriptions
+## 🤖 AI Agent Core
+The heart of the conversation—powered by advanced AI for personalized recommendations:
+- **OpenAI Chat Model (GPT-4o)**: Drives natural, context-aware dialogues
+- **Simple Memory**: Tracks conversation history per user session for continuity
+- **Supabase Vector Store**: Performs semantic search on laptop inventory for relevant suggestions
+- **Custom System Prompt**: Shapes the agent's personality (friendly Egyptian sales rep) and enforces store policies (e.g., shipping to Cairo/Giza only)
 
-Routes messages to the appropriate processors
+## 💾 Data Persistence
+Ensures orders are safely stored for fulfillment:
+- **Google Sheets Integration**: Logs confirmed orders with full customer details (name, mobile, address)
 
-🎧 Media Processing Layer
+## 📤 Response Handler
+Delivers polished replies back to users:
+- **Code Node**: Formats AI outputs for Facebook Messenger compatibility (e.g., buttons, quick replies)
+- **HTTP Request**: Sends structured responses via Facebook's API
 
-Switch Node → Routes attachments based on type (image, audio, text)
+## 🔄 Chat Processing Flow
+A streamlined pipeline for end-to-end interactions:
+```
+Facebook Messenger webhook → AI agent with memory → Vector store retrieval → Response generation
+```
 
-Transcribe Recording → Converts voice messages into text using OpenAI Whisper
+## 🛡️ Error Handling
+Built for reliability:
+- **Comprehensive error handling** across all nodes
+- **Retry mechanisms** for external API calls (e.g., OpenAI, Supabase) to minimize disruptions
 
-Analyze Image → Extracts laptop details from product photos
-
-HTTP Request → Fetches attachment payloads for further analysis
-
-🤖 AI Agent Core
-
-OpenAI Chat Model (GPT-4o) → Powers the conversational intelligence
-
-Simple Memory → Maintains session context for each user
-
-Supabase Vector Store → Enables semantic search on laptop inventory data
-
-Custom System Prompt → Defines agent tone and behavior
-(Uses Egyptian Arabic dialect, persuasive sales language, and store policy awareness)
-
-💾 Data Persistence
-
-Google Sheets Integration → Saves confirmed customer orders, including contact and shipping details
-
-💬 Response Handler
-
-Code Node → Formats AI responses for Facebook Messenger compatibility
-
-HTTP Request → Sends formatted replies back to Messenger users
+This modular design ensures scalability, easy maintenance, and a delightful user experience. For setup details, check the [Deployment Guide](link-to-guide). 🚀
