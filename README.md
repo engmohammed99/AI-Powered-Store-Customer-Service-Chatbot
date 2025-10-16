@@ -56,8 +56,41 @@ The system features **automated data ingestion from Google Drive** and a **dual 
 
 ## 🗂 Workflow Architecture
 
-**Data Ingestion Pipeline:**  
-Automated download from **Google Drive** → Data processing → Vector embedding → Dual database storage  
+Architecture
+Core Components
+
+Webhook (Facebook Messenger Integration)
+
+Receives incoming messages from Facebook
+Validates webhook subscriptions
+Routes messages to appropriate processors
+
+
+Media Processing Layer
+
+Switch Node: Routes attachments by type
+Transcribe Recording: Converts voice messages to text using OpenAI
+Analyze Image: Extracts laptop details from product images
+HTTP Request: Fetches attachment payloads
+
+
+AI Agent Core
+
+OpenAI Chat Model (GPT-4o): Powers the conversational AI
+Simple Memory: Maintains conversation context per user session
+Supabase Vector Store: Retrieves laptop inventory data via semantic search
+Custom System Prompt: Defines agent personality and behavior (Egyptian colloquial Arabic, sales techniques, store policies)
+
+
+Data Persistence
+
+Google Sheets Integration: Saves confirmed orders with customer details
+
+
+Response Handler
+
+Code Node: Formats responses for Facebook compatibility
+HTTP Request: Sends formatted responses back to Facebook Messenger  
 
 **Chat Processing:**  
 Facebook Messenger webhook → AI agent with memory → Vector store retrieval → Response generation  
