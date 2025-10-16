@@ -99,5 +99,5 @@ Facebook Messenger webhook → AI agent with memory → Vector store retrieval �
 Built for reliability:
 - **Comprehensive error handling** across all nodes
 - **Retry mechanisms** for external API calls (e.g., OpenAI, Supabase) to minimize disruptions
-
-This modular design ensures scalability, easy maintenance, and a delightful user experience. For setup details, check the [Deployment Guide](link-to-guide). 🚀
+![Alt text](Diagram.png)
+This modular design ensures scalability, easy maintenance, and a delightful user experience.
