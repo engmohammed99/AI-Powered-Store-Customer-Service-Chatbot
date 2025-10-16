@@ -56,44 +56,47 @@ The system features **automated data ingestion from Google Drive** and a **dual 
 
 ## 🗂 Workflow Architecture
 
-Architecture
-Core Components
+🧱 Architecture Overview
 
-Webhook (Facebook Messenger Integration)
+This project integrates multiple AI and automation layers to deliver a seamless customer experience on Facebook Messenger.
+Below is an overview of the core components that make the system work end-to-end.
+
+⚙️ Core Components
+📨 Webhook (Facebook Messenger Integration)
 
 Receives incoming messages from Facebook
+
 Validates webhook subscriptions
-Routes messages to appropriate processors
 
+Routes messages to the appropriate processors
 
-Media Processing Layer
+🎧 Media Processing Layer
 
-Switch Node: Routes attachments by type
-Transcribe Recording: Converts voice messages to text using OpenAI
-Analyze Image: Extracts laptop details from product images
-HTTP Request: Fetches attachment payloads
+Switch Node → Routes attachments based on type (image, audio, text)
 
+Transcribe Recording → Converts voice messages into text using OpenAI Whisper
 
-AI Agent Core
+Analyze Image → Extracts laptop details from product photos
 
-OpenAI Chat Model (GPT-4o): Powers the conversational AI
-Simple Memory: Maintains conversation context per user session
-Supabase Vector Store: Retrieves laptop inventory data via semantic search
-Custom System Prompt: Defines agent personality and behavior (Egyptian colloquial Arabic, sales techniques, store policies)
+HTTP Request → Fetches attachment payloads for further analysis
 
+🤖 AI Agent Core
 
-Data Persistence
+OpenAI Chat Model (GPT-4o) → Powers the conversational intelligence
 
-Google Sheets Integration: Saves confirmed orders with customer details
+Simple Memory → Maintains session context for each user
 
+Supabase Vector Store → Enables semantic search on laptop inventory data
 
-Response Handler
+Custom System Prompt → Defines agent tone and behavior
+(Uses Egyptian Arabic dialect, persuasive sales language, and store policy awareness)
 
-Code Node: Formats responses for Facebook compatibility
-HTTP Request: Sends formatted responses back to Facebook Messenger  
+💾 Data Persistence
 
-**Chat Processing:**  
-Facebook Messenger webhook → AI agent with memory → Vector store retrieval → Response generation  
+Google Sheets Integration → Saves confirmed customer orders, including contact and shipping details
 
-**Error Handling:**  
-Comprehensive error handling and retry mechanisms for all external API calls  
+💬 Response Handler
+
+Code Node → Formats AI responses for Facebook Messenger compatibility
+
+HTTP Request → Sends formatted replies back to Messenger users
