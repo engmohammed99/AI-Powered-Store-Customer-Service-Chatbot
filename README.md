@@ -1,6 +1,6 @@
 # AI-Powered-Store-Customer-Service-Chatbot
 [🎥 Demo Video](https://drive.google.com/file/d/1vaQstwwZw9lxWQ3mKClY8ILvA6abV0Cw/view?usp=sharing)
-
+[Workflow](Workflow.png)
 ## 📝 Project Overview
 Developed and implemented an **intelligent AI chatbot** for a PC store's **Facebook Messenger** platform, enabling automated customer service and product recommendations in **Egyptian Arabic**.  
 The system features **automated data ingestion from Google Drive** and a **dual vector database architecture** for high availability.
